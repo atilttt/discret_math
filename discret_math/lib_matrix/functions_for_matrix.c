@@ -4,7 +4,7 @@
 
 //==================== Внутренние хелперы ====================//
 
-static enum ERROS_TYPE validate_matrix_ro(const matrix *m)
+enum ERROS_TYPE validate_matrix_ro(const matrix *m)
 {
     if (!m) return NULL_POINTER_ERROR;
     if (m->rows == 0 || m->colums == 0) return INPUT_OUTPUT_ERROR;
@@ -17,7 +17,7 @@ static enum ERROS_TYPE validate_matrix_ro(const matrix *m)
 }
 
 // освобождает ТОЛЬКО данные, НЕ трогает rows/colums
-static void free_matrix_data(matrix *m)
+void free_matrix_data(matrix *m)
 {
     if (!m || !m->matrix) return;
 
@@ -28,7 +28,7 @@ static void free_matrix_data(matrix *m)
     m->matrix = NULL;
 }
 
-static enum ERROS_TYPE alloc_matrix(matrix *m, size_t rows, size_t colums)
+enum ERROS_TYPE alloc_matrix(matrix *m, size_t rows, size_t colums)
 {
     if (!m) return NULL_POINTER_ERROR;
     if (rows == 0 || colums == 0) return INPUT_OUTPUT_ERROR;
@@ -56,14 +56,14 @@ static enum ERROS_TYPE alloc_matrix(matrix *m, size_t rows, size_t colums)
     return OK;
 }
 
-static void swap_rows(double **m, size_t r1, size_t r2)
+void swap_rows(double **m, size_t r1, size_t r2)
 {
     double *tmp = m[r1];
     m[r1] = m[r2];
     m[r2] = tmp;
 }
 
-static enum ERROS_TYPE matrix_identity(matrix *out, size_t n)
+enum ERROS_TYPE matrix_identity(matrix *out, size_t n)
 {
     if (!out) return NULL_POINTER_ERROR;
 

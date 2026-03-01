@@ -60,5 +60,10 @@ enum ERROS_TYPE matrix_inv_adjugate(const matrix *a, matrix *out);
 
 //-------------------- Ошибки --------------------//
 void matrix_fatal(enum ERROS_TYPE err, const char *where);
+enum ERROS_TYPE validate_matrix_ro(const matrix *m);
+void free_matrix_data(matrix *m);
+enum ERROS_TYPE alloc_matrix(matrix *m, size_t rows, size_t colums);
+void swap_rows(double **m, size_t r1, size_t r2);
+enum ERROS_TYPE matrix_identity(matrix *out, size_t n);
 
 #endif

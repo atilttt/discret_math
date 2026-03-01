@@ -46,15 +46,12 @@ static int read_double_line(const char *prompt, double *out)
         return 1;
     }
 }
-
-// съедаем хвост после scanf из твоих функций ввода матриц
 static void eat_stdin_line(void)
 {
     int c;
     while ((c = getchar()) != '\n' && c != EOF) {}
 }
 
-// критичные ошибки -> exit, а SIZE_MISMATCH/SINGULAR -> просто warn
 static void handle_op_error(enum ERROS_TYPE e, const char *where,
                             const matrix *A, const matrix *B)
 {
@@ -103,7 +100,6 @@ int main(void)
     input_and_fill(&A, "A");
     input_and_fill(&B, "B");
 
-    // после scanf-ов останется '\n'
     eat_stdin_line();
 
     for (;;)
